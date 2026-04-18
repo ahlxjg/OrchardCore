@@ -1,0 +1,57 @@
+@using OrchardCore
+@using OrchardCore.ContentManagement.Metadata.Models
+@model OrchardCore.Html.ViewModels.HtmlBodyPartViewModel
+
+@{
+    var tinymceSettings = Model.TypePartDefinition.GetSettings<OrchardCore.TinyMCE.Settings.TinyMCEHtmlBodyPartSettings>();
+    var culture = await Orchard.GetContentCultureAsync(Model.ContentItem) ?? System.Globalization.CultureInfo.CurrentUICulture;
+}
+
+@await DisplayAsync(await New.ShortcodeModal())
+
+<!--style asp-name="tinymce"></style-->
+<script asp-name="tinymce" at="Foot"></script>
+<script asp-name="tinymce-default-settings" at="Foot" depends-on="jQuery"></script>
+<script asp-name="tinymce-extended-features" at="Foot" depends-on="jQuery"></script>
+
+<div class="@Orchard.GetWrapperClasses()">
+    <label asp-for="Html" class="@Orchard.GetLabelClasses()">@Model.TypePartDefinition.DisplayName()</label>
+    <div class="@Orchard.GetEndClasses()">
+        <textarea asp-for="Html"></textarea>
+        <span class="hint">@T["The body of the content item."]</span>
+    </div>
+</div>
+
+<script at="Foot" depends-on="jQuery">
+    $(function () {
+        var customSettings = {};
+        
+        @if (!string.IsNullOrEmpty(tinymceSettings.Options))
+        {
+            <text>customSettings = @Html.Raw(tinymceSettings.Options);</text>
+        }
+
+        var defaultConfig = window.orchardTinyMceDefaults;
+        var finalConfig = (Object.keys(customSettings).length > 0) ? customSettings : defaultConfig;
+        
+        var selector = '@Html.IdFor(m => m.Html)'.replace(/:/g, '\\:');
+
+        finalConfig.selector = '#' + selector;
+
+        if (!finalConfig.plugins) {
+            finalConfig.plugins = ['orchard'];
+        } else if (Array.isArray(finalConfig.plugins)) 
+        {
+            if (!finalConfig.plugins.includes('orchard')) {
+                finalConfig.plugins.push('orchard');
+            }
+        } else if (typeof finalConfig.plugins === 'string') 
+        {
+            if (finalConfig.plugins.indexOf('orchard') === -1) {
+                finalConfig.plugins += ' orchard';
+            }
+        }
+
+        tinymce.init(finalConfig);
+    });
+</script>

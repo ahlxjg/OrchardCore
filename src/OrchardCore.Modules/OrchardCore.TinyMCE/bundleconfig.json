@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/Scripts/tinymce.default.settings.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/tinymce.default.settings.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/tinymce.extended.features.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/tinymce.extended.features.js"
+    ]
+  }
+]

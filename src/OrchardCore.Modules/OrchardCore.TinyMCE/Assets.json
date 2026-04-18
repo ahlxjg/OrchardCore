@@ -1,0 +1,14 @@
+[
+  {
+    "action": "min",
+    "name": "tinymce-default-settings",
+    "source": "wwwroot/Scripts/tinymce.default.settings.js",
+    "tags": [ "admin", "dashboard", "js" ]
+  },
+  {
+    "action": "min",
+    "name": "tinymce-extended-features",
+    "source": "wwwroot/Scripts/tinymce.extended.features.js",
+    "tags": [ "admin", "dashboard", "js" ]
+  }
+]

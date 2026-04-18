@@ -1,0 +1,25 @@
+(function () {
+    "use strict";
+    window.orchardTinyMceDefaults = {
+        height: 600,
+        menubar: !0,
+        promotion: !1,
+        license_key: "gpl",
+        plugins: ["advlist", "autolink", "lists", "link", "image", "charmap", "preview", "anchor", "searchreplace", "visualblocks", "code", "fullscreen", "insertdatetime", "media", "table", "help", "wordcount", "codesample", "orchard"],
+        toolbar: "undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | orchardshortcode codesample removeformat orchardmedia | help",
+        codesample_languages: [
+            { text: "Shell", value: "shell" },
+            { text: "Bash", value: "bash" },
+            { text: "INI", value: "ini" },
+            { text: "HTML/XML", value: "markup" },
+            { text: "JavaScript", value: "javascript" },
+            { text: "CSS", value: "css" },
+            { text: "C#", value: "csharp" },
+            { text: "SQL", value: "sql" },
+            { text: "JSON", value: "json" },
+            { text: "Liquid", value: "liquid" },
+            { text: "Regex", value: "regex" }
+        ]
+    }
+}
+)(jQuery);
